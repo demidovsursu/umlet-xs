@@ -1,5 +1,4 @@
-[![Build Status](https://api.travis-ci.org/umlet/umlet.svg?branch=master)](https://travis-ci.org/umlet/umlet)
-# UMLet-xs
+# UMLet-XS
 
 UMLet is an open-source UML tool with a simple user interface: draw UML diagrams fast, export diagrams to eps, pdf, jpg, svg, and clipboard, share diagrams using Eclipse, and create new, custom UML elements. 
 
@@ -7,8 +6,10 @@ UMLet is an open-source UML tool with a simple user interface: draw UML diagrams
 
 * Go to http://www.umlet.com to get the latest compiled versions or to http://www.umletino.com to use UMLet in your web browser
 
-This fork removes oboselete and not used functions,
+This fork removes obsolete and not used functions,
 but it adds new elements, arrows and features.
+
+UMLet-XS is 3.3M, original UMLet is 9M.
 
 New palettes
 - Entity-relation diagram (crow's foot)
