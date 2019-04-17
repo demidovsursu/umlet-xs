@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0-XS">
+  <zoom_level>12</zoom_level>
+  <element>
+    <id>ProcStore</id>
+    <coordinates>
+      <x>72</x>
+      <y>492</y>
+      <w>204</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>init:
+дисплей.1=
+дисплей.bg=black
+звук.1=☎ тишина
+трубка.1=Поднять
+трубка.signal=поднять трубку
+len=0
+
+take:
+дисплей.bg=white
+звук.1=✆ на линии
+трубка.1=Опустить
+трубка.signal=опустить трубку
+
+done:
+дисплей.bg=black
+звук.1=☎ тишина
+дисплей.1=
+трубка.1=Поднять
+трубка.signal=поднять трубку
+len=0
+
+add:
+дисплей.1=$(дисплей.1)$1
+++len
+
+keypress:
+[$1~=1|2|3|4|5|6|7|8|9|0] &lt;digit($1)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>360</x>
+      <y>228</y>
+      <w>24</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>type=initial
+active=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>240</y>
+      <w>60</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/init</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>DataStore</id>
+    <coordinates>
+      <x>72</x>
+      <y>432</y>
+      <w>120</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>len=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>312</x>
+      <y>360</y>
+      <w>120</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Выключен</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>324</x>
+      <y>132</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>name=трубка
+Поднять
+signal=поднять трубку</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>624</x>
+      <y>360</y>
+      <w>276</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Ввод номера
+--
+digit [len&lt;6] / add($1)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>348</y>
+      <w>228</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+поднять трубку/take</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>468</x>
+      <y>132</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>signal=соединено
+Соединить</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>612</x>
+      <y>132</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>signal=ошибка
+Ошибка</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>372</y>
+      <w>228</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+опустить трубку/done</panel_attributes>
+    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>72</x>
+      <y>72</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>7
+signal=digit(7)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIWindow</id>
+    <coordinates>
+      <x>72</x>
+      <y>24</y>
+      <w>168</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>name=дисплей
+
+halign=right
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>132</x>
+      <y>72</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>8
+signal=digit(8)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>192</x>
+      <y>72</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>9
+signal=digit(9)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>72</x>
+      <y>132</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>4
+signal=digit(4)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>132</x>
+      <y>132</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>5
+signal=digit(5)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>192</x>
+      <y>132</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>6
+signal=digit(6)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>72</x>
+      <y>192</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>1
+signal=digit(1)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>132</x>
+      <y>192</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>2
+signal=digit(2)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>192</x>
+      <y>192</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>3
+signal=digit(3)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>132</x>
+      <y>252</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>0
+signal=digit(0)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>192</x>
+      <y>252</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>#
+signal=redial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>72</x>
+      <y>252</y>
+      <w>48</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>*
+signal=pause</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIWindow</id>
+    <coordinates>
+      <x>72</x>
+      <y>312</y>
+      <w>168</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>name=звук
+☎ тишина
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>684</x>
+      <y>504</y>
+      <w>120</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Соединение
+--
+enter/звук.1=✆ сигнал вызова</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>732</x>
+      <y>396</y>
+      <w>180</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+digit [else] / add($1)</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>504</y>
+      <w>288</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+ошибка</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>312</x>
+      <y>504</y>
+      <w>120</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Ожидание
+--
+do/звук.1=✆ нет соединения</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>396</y>
+      <w>204</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+опустить трубку/done</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>540</x>
+      <y>684</y>
+      <w>120</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Разговор
+--
+enter/звук.1=✆ Алло!</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>540</y>
+      <w>180</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+соединено</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>276</x>
+      <y>396</y>
+      <w>288</w>
+      <h>324</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+опустить трубку/done</panel_attributes>
+    <additional_attributes>220.0;250.0;40.0;250.0;10.0;130.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>744</x>
+      <y>132</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>signal=разрыв связи
+Разрыв</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>372</x>
+      <y>540</y>
+      <w>228</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+разрыв связи</panel_attributes>
+    <additional_attributes>170.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>480</x>
+      <y>60</y>
+      <w>132</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Телефон
+fontsize=24</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

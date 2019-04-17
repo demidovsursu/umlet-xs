@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0-XS">
+  <zoom_level>15</zoom_level>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>15</x>
+      <y>165</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>7
+signal=digit(7)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIWindow</id>
+    <coordinates>
+      <x>15</x>
+      <y>105</y>
+      <w>210</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>name=display
+3
+halign=right</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>90</x>
+      <y>165</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>8
+signal=digit(8)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>165</x>
+      <y>165</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>9
+signal=digit(9)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>15</x>
+      <y>240</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>4
+signal=digit(4)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>90</x>
+      <y>240</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>5
+signal=digit(5)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>165</x>
+      <y>240</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>6
+signal=digit(6)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>15</x>
+      <y>315</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>1
+signal=digit(1)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>90</x>
+      <y>315</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>2
+signal=digit(2)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>165</x>
+      <y>315</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>3
+signal=digit(3)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>15</x>
+      <y>390</y>
+      <w>135</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>0
+signal=digit(0)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>165</x>
+      <y>390</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>C
+signal=clear</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>ProcStore</id>
+    <coordinates>
+      <x>885</x>
+      <y>615</y>
+      <w>270</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>digit:
+[display.1==0] display.1=
+display.1=$(display.1)$1
+
+clear:
+display.1=0
+
+start:
+clock.1=$(display.1)
+started=1
+Timer.state=
+
+stop:
+started=0
+
+timer:
+[started &amp;&amp; clock.1&gt;0] --clock.1
+[started &amp;&amp; clock.1==0] Timer.state=boom</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIWindow</id>
+    <coordinates>
+      <x>0</x>
+      <y>45</y>
+      <w>240</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>name=Enter
+Enter number
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>60</x>
+      <y>465</y>
+      <w>120</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Start
+type=()
+bg=red
+goto=Timer
+signal=start</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIWindow</id>
+    <coordinates>
+      <x>1005</x>
+      <y>45</y>
+      <w>210</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>name=Timer
+state=
+Timer
+--
+customelement=
+boom:
+drawImage("boom.png",0,0,width,height)
+active=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>1050</x>
+      <y>180</y>
+      <w>120</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Stop
+type=()
+bg=green
+goto=Enter
+signal=stop</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIList</id>
+    <coordinates>
+      <x>1020</x>
+      <y>90</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>name=clock
+0
+frame=no
+fontsize=24</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>DataStore</id>
+    <coordinates>
+      <x>705</x>
+      <y>615</y>
+      <w>150</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>started=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

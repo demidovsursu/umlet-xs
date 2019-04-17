@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0-XS">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UIWindow</id>
+    <coordinates>
+      <x>50</x>
+      <y>50</y>
+      <w>320</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes> 	 UMLet	&gt;✕&gt;
+--
+File Edit Help	&gt;Search:&gt;	#    #	&gt;Zoom:&gt;	#100%▾#	
+--
+customelement=
+drawImage("umlet_logo.png",1,1,20,20)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIList</id>
+    <coordinates>
+      <x>50</x>
+      <y>410</y>
+      <w>140</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>◉	Selected
+◎	Unselected
+
+☑	Checked
+☐	Unchecked
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>50</x>
+      <y>10</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Button</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIPanel</id>
+    <coordinates>
+      <x>390</x>
+      <y>130</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>First	Second	Third</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>160</x>
+      <y>10</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>✓ OK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>270</x>
+      <y>10</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>✗ Cancel</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIWindow</id>
+    <coordinates>
+      <x>50</x>
+      <y>300</y>
+      <w>170</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Autorization
+--
+&gt;Login:&gt;	#admin#	
+&gt;Password:&gt;	# ******#	
+group=1
+name=login</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>60</x>
+      <y>370</y>
+      <w>60</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Ok
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>140</x>
+      <y>370</y>
+      <w>60</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Cancel
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIPanel</id>
+    <coordinates>
+      <x>390</x>
+      <y>210</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>state=Second
+First	Second	Third</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIList</id>
+    <coordinates>
+      <x>240</x>
+      <y>540</y>
+      <w>180</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>grid=yes
+&gt;#&gt;	Name	|Icon|
+-
+&gt;7&gt;	Smiling	|☺|
+&gt;101&gt;	Frowning	|☹|
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIList</id>
+    <coordinates>
+      <x>230</x>
+      <y>410</y>
+      <w>250</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>*Company*	*Contact*	*Country*
+-
+Futterkiste	Maria	Germany
+Centro	John	Mexico
+Ernst Handel	Roland	Austria
+Island Trading	Helen	UK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIPanel</id>
+    <coordinates>
+      <x>250</x>
+      <y>310</y>
+      <w>70</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>--
+scroll=hv
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIPanel</id>
+    <coordinates>
+      <x>350</x>
+      <y>310</y>
+      <w>60</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>--
+scroll=h
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIPanel</id>
+    <coordinates>
+      <x>430</x>
+      <y>310</y>
+      <w>70</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>--
+scroll=v
+First
+Second
+Third</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIList</id>
+    <coordinates>
+      <x>50</x>
+      <y>530</y>
+      <w>160</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>&#128187; Computer
+  &#128194; C:
+   ◢ &#128194; Program Files
+      ▷ &#128193; Java
+      ▷ &#128193; LibreOffice 6
+   ▷ &#128193; Windows
+  &#128193; D:
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIList</id>
+    <coordinates>
+      <x>240</x>
+      <y>620</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>frame=no
+◎	Frame
+◉	No frame
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIButton</id>
+    <coordinates>
+      <x>380</x>
+      <y>10</y>
+      <w>80</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Button
+type=()
+bg=red
+goto=login
+signal=START</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UIWindow</id>
+    <coordinates>
+      <x>390</x>
+      <y>50</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Window
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
