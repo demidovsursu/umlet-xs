@@ -19,6 +19,9 @@ import java.util.ArrayDeque;
 import java.util.Queue;
  
 import javax.swing.JOptionPane;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,6 +81,7 @@ public class DiagramHandler {
 
 	protected DrawPanel drawpanel;
 	private final Controller controller;
+	private Clip clip=null;
 	protected DiagramListener listener;
 	private String helptext;
 	private boolean enabled;
@@ -990,6 +994,29 @@ public class DiagramHandler {
 		}
 		return a.toString();
 	}
+	private void playSound(String name) {
+		String fullname=getFullPathName();
+		String dir="";
+		if(fullname!=null) {
+			int index = fullname.lastIndexOf('\\');
+			if(index==-1) index = fullname.lastIndexOf('/');
+			dir=fullname.substring(0,index+1);
+		}
+		try {
+			if(clip!=null) {
+				if (clip.isRunning())
+					clip.stop();
+				clip.close();
+			}
+			else {
+				clip = AudioSystem.getClip();
+			}
+			AudioInputStream audio = AudioSystem.getAudioInputStream(new File(dir+name));
+			clip.open(audio);
+			clip.setFramePosition(0);
+			clip.start();
+		} catch(Throwable t) {}
+	}
 	private void execAction(String a) {
 		if(a==null || a.length()==0) return;
 //		mylog.append("action("+a+") ");
@@ -1003,6 +1030,9 @@ public class DiagramHandler {
 					setData(name,String.valueOf(val));
 				} catch(Throwable t) {}
 			}
+		}
+		else if(a.startsWith(">")) {
+			playSound(a.substring(1).trim());
 		}
 		else if(a.startsWith("<")) {
 			String signal=replaceSubst(a.substring(1).trim());
