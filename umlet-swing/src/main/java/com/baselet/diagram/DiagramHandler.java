@@ -994,9 +994,17 @@ public class DiagramHandler {
 		}
 		return a.toString();
 	}
-	private void playSound(String name) {
+	private void playSound(String name, boolean loopplay) {
 		String fullname=getFullPathName();
 		String dir="";
+		if(name=="") {
+			if(clip!=null) {
+				if (clip.isRunning())
+					clip.stop();
+				clip.close();
+			}
+			return;
+		}
 		if(fullname!=null) {
 			int index = fullname.lastIndexOf('\\');
 			if(index==-1) index = fullname.lastIndexOf('/');
@@ -1013,6 +1021,10 @@ public class DiagramHandler {
 			}
 			AudioInputStream audio = AudioSystem.getAudioInputStream(new File(dir+name));
 			clip.open(audio);
+			if(loopplay)
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
+			else
+				clip.loop(0);
 			clip.setFramePosition(0);
 			clip.start();
 		} catch(Throwable t) {}
@@ -1031,8 +1043,11 @@ public class DiagramHandler {
 				} catch(Throwable t) {}
 			}
 		}
+		else if(a.startsWith(">>")) {
+			playSound(a.substring(2).trim(),true);
+		}
 		else if(a.startsWith(">")) {
-			playSound(a.substring(1).trim());
+			playSound(a.substring(1).trim(),false);
 		}
 		else if(a.startsWith("<")) {
 			String signal=replaceSubst(a.substring(1).trim());
