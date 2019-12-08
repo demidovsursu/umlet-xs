@@ -22,6 +22,19 @@ take:
 звук.1=✆ на линии
 трубка.1=Опустить
 трубка.signal=опустить трубку
+&gt;&gt;connect.wav
+
+call:
+звук.1=✆ сигнал вызова
+&gt;&gt;call.wav
+
+busy:
+звук.1=✆ нет соединения
+&gt;&gt;busy.wav
+
+hello:
+звук.1=✆ Алло!
+&gt;&gt;hello.wav
 
 done:
 дисплей.bg=black
@@ -30,9 +43,11 @@ done:
 трубка.1=Поднять
 трубка.signal=поднять трубку
 len=0
+&gt;
 
 add:
 дисплей.1=$(дисплей.1)$1
+&gt;dial.wav
 ++len
 
 keypress:
@@ -47,8 +62,7 @@ keypress:
       <w>24</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>type=initial
-active=1</panel_attributes>
+    <panel_attributes>type=initial</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -82,7 +96,8 @@ active=1</panel_attributes>
       <w>120</w>
       <h>48</h>
     </coordinates>
-    <panel_attributes>Выключен</panel_attributes>
+    <panel_attributes>Выключен
+active=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -340,7 +355,7 @@ signal=pause</panel_attributes>
     </coordinates>
     <panel_attributes>Соединение
 --
-enter/звук.1=✆ сигнал вызова</panel_attributes>
+entry/call</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -377,7 +392,7 @@ digit [else] / add($1)</panel_attributes>
     </coordinates>
     <panel_attributes>Ожидание
 --
-do/звук.1=✆ нет соединения</panel_attributes>
+entry/busy</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -402,7 +417,7 @@ do/звук.1=✆ нет соединения</panel_attributes>
     </coordinates>
     <panel_attributes>Разговор
 --
-enter/звук.1=✆ Алло!</panel_attributes>
+entry/ hello</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

@@ -4,8 +4,8 @@
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>15</x>
-      <y>165</y>
+      <x>270</x>
+      <y>210</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -16,8 +16,8 @@ signal=digit(7)</panel_attributes>
   <element>
     <id>UIWindow</id>
     <coordinates>
-      <x>15</x>
-      <y>105</y>
+      <x>270</x>
+      <y>150</y>
       <w>210</w>
       <h>45</h>
     </coordinates>
@@ -29,8 +29,8 @@ halign=right</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>90</x>
-      <y>165</y>
+      <x>345</x>
+      <y>210</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -41,8 +41,8 @@ signal=digit(8)</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>165</x>
-      <y>165</y>
+      <x>420</x>
+      <y>210</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -53,8 +53,8 @@ signal=digit(9)</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>15</x>
-      <y>240</y>
+      <x>270</x>
+      <y>285</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -65,8 +65,8 @@ signal=digit(4)</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>90</x>
-      <y>240</y>
+      <x>345</x>
+      <y>285</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -77,8 +77,8 @@ signal=digit(5)</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>165</x>
-      <y>240</y>
+      <x>420</x>
+      <y>285</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -89,8 +89,8 @@ signal=digit(6)</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>15</x>
-      <y>315</y>
+      <x>270</x>
+      <y>360</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -101,8 +101,8 @@ signal=digit(1)</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>90</x>
-      <y>315</y>
+      <x>345</x>
+      <y>360</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -113,8 +113,8 @@ signal=digit(2)</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>165</x>
-      <y>315</y>
+      <x>420</x>
+      <y>360</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -125,8 +125,8 @@ signal=digit(3)</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>15</x>
-      <y>390</y>
+      <x>270</x>
+      <y>435</y>
       <w>135</w>
       <h>60</h>
     </coordinates>
@@ -137,8 +137,8 @@ signal=digit(0)</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>165</x>
-      <y>390</y>
+      <x>420</x>
+      <y>435</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -149,8 +149,8 @@ signal=clear</panel_attributes>
   <element>
     <id>ProcStore</id>
     <coordinates>
-      <x>885</x>
-      <y>615</y>
+      <x>615</x>
+      <y>660</y>
       <w>270</w>
       <h>300</h>
     </coordinates>
@@ -171,14 +171,19 @@ started=0
 
 timer:
 [started &amp;&amp; clock.1&gt;0] --clock.1
-[started &amp;&amp; clock.1==0] Timer.state=boom</panel_attributes>
+[started &amp;&amp; clock.1==0 &amp;&amp; Timer.state==] boom
+
+boom:
+Timer.state=boom
+&gt;boom.wav
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UIWindow</id>
     <coordinates>
-      <x>0</x>
-      <y>45</y>
+      <x>255</x>
+      <y>90</y>
       <w>240</w>
       <h>480</h>
     </coordinates>
@@ -190,8 +195,8 @@ Enter number
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>60</x>
-      <y>465</y>
+      <x>315</x>
+      <y>510</y>
       <w>120</w>
       <h>45</h>
     </coordinates>
@@ -205,8 +210,8 @@ signal=start</panel_attributes>
   <element>
     <id>UIWindow</id>
     <coordinates>
-      <x>1005</x>
-      <y>45</y>
+      <x>1260</x>
+      <y>90</y>
       <w>210</w>
       <h>195</h>
     </coordinates>
@@ -223,8 +228,8 @@ active=1</panel_attributes>
   <element>
     <id>UIButton</id>
     <coordinates>
-      <x>1050</x>
-      <y>180</y>
+      <x>1305</x>
+      <y>225</y>
       <w>120</w>
       <h>45</h>
     </coordinates>
@@ -238,13 +243,13 @@ signal=stop</panel_attributes>
   <element>
     <id>UIList</id>
     <coordinates>
-      <x>1020</x>
-      <y>90</y>
+      <x>1275</x>
+      <y>135</y>
       <w>180</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>name=clock
-0
+3
 frame=no
 fontsize=24</panel_attributes>
     <additional_attributes/>
@@ -252,8 +257,8 @@ fontsize=24</panel_attributes>
   <element>
     <id>DataStore</id>
     <coordinates>
-      <x>705</x>
-      <y>615</y>
+      <x>960</x>
+      <y>660</y>
       <w>150</w>
       <h>45</h>
     </coordinates>
