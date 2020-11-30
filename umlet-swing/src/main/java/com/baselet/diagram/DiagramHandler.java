@@ -646,7 +646,14 @@ public class DiagramHandler {
 		if(arg1.indexOf('$')>=0) arg1=replaceSubst(arg1);
 		else arg1=getData(arg1);
 		if(arg1==null) return false;
-		if(op.equals("==") || op.equals("=")) return arg1.equals(arg2);
+		if(op.equals("==") || op.equals("=")) { 
+			boolean b=arg1.equals(arg2);
+//			if(b)
+//			mylog.append("=true");
+//			else
+//			mylog.append("=false");
+			return b;
+		}
 		if(op.equals("~=")) {
 			try {
 				return arg1.matches(arg2);
@@ -807,6 +814,7 @@ public class DiagramHandler {
 		GridElement elseLink=null;
 		String elseAction=null;
 		int n=0;
+//                mylog.append(" select ");
 		for(Stickable s: ls) {
 			if(s instanceof Relation) {
 			Relation r=(Relation)s;
@@ -827,18 +835,23 @@ public class DiagramHandler {
 				guard=trigger.substring(gpos);
 				trigger=trigger.substring(0,gpos).trim();
 			}
+//			mylog.append(h+"@"+trigger+":"+guard+":"+action+" ");
 			if(testTrigger(signal,trigger)) {
+// 			        mylog.append("test <"+guard+">");
 				if(guard.equals("[else]")) {
 					elseLink=r;
 					elseAction=action;
 				}
 				else if(testGuard(guard)) {
+// 			                mylog.append(" true ");
 					na.add(r);
 					if(n==0) execAction(exitAction);
 					execAction(action);
 					++n;
 					if(!all) break;
 				}
+//                                else
+// 			                mylog.append(" false ");
 			}
 			else if(trigger.length()==0 && guard.equals("[else]") && elseLink==null) {
 				elseLink=r;
@@ -1157,6 +1170,7 @@ public class DiagramHandler {
 				}
 			}
 			else if(ne instanceof com.baselet.element.elementnew.uml.SpecialState) {
+//		                mylog.append("type "+t);
 				if(t!=null && t.equals("termination")) {
 					c.getCommands().add(new ChangeElementSetting(ActiveFacet.KEY, null, ae));
 					signal="";
@@ -1176,7 +1190,7 @@ public class DiagramHandler {
 			}
 		}
 		createChangePanelLines(c);
-//		Notifier.getInstance().showInfo(String.valueOf(ae.size())+" - "+String.valueOf(oa.size())+" + "+String.valueOf(na.size()));
+//		mylog.append(String.valueOf(ae.size())+" - "+String.valueOf(oa.size())+" + "+String.valueOf(na.size()));
 		if(oa.size()>0) c.getCommands().add(new ChangeElementSetting(ActiveFacet.KEY, null, oa));
 		if(na.size()>0) c.getCommands().add(new ChangeElementSetting(ActiveFacet.KEY, '+', na));
 //		Notifier.getInstance().showInfo("Ok: "+mylog.toString());

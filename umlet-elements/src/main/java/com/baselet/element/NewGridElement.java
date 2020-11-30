@@ -196,7 +196,10 @@ public abstract class NewGridElement implements GridElement {
 	}
 	public String getHeader() {
 		for (String line : getPanelAttributesAsList()) {
-			if (!(line.startsWith("//") || line.indexOf('=')>=0)) {
+			int gpos=line.indexOf('[');
+			int epos=line.indexOf('=');
+			if(gpos>=0 && epos>gpos) epos=-1;
+			if (!(line.startsWith("//") || epos>=0)) {
 				return line;
 			}
 		}
