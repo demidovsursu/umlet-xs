@@ -1113,8 +1113,6 @@ public class DiagramHandler {
 	}
 	public Command emulationStep() {
 		String signal="";
-		if(!signalQueue.isEmpty())
-			signal=signalQueue.poll();
 		List<GridElement> ae=drawpanel.getActiveElements();
 		if(ae==null || ae.size()==0) return null;
 		initCacheData();
@@ -1122,13 +1120,9 @@ public class DiagramHandler {
 		ArrayList<GridElement> oa=new ArrayList<GridElement>();
 		Macro c=new Macro(new ArrayList<Command>());
 //		mylog=new StringBuilder();
+                
 		try {
-		if(signal.length()==0) {
-			execAction(findProc("timer"));
-		}
-		else {
-			setArgs(signal,false);
-		}
+                boolean syncflag=false;
 		for(GridElement e:ae) {
 			if(e instanceof NewGridElement) {
 			NewGridElement ne=(NewGridElement)e;
@@ -1141,8 +1135,36 @@ public class DiagramHandler {
 				if(next!=null && next instanceof com.baselet.element.elementnew.uml.State) {
 					execAction(findAction(next,"entry"));
 				}
+				syncflag=true;
 			} 
-			else if(ne instanceof com.baselet.element.elementnew.uml.State) {
+			else if(ne instanceof com.baselet.element.elementnew.uml.SyncBarHorizontal || e instanceof com.baselet.element.elementnew.uml.SyncBarVertical) {
+				int n=ne.getEndStickables().size();
+				String a=ne.getActive();
+				if(a.equals(String.valueOf(n))) {
+					oa.add(ne);
+					selectNextRelation("",ne,na,true,"");
+					syncflag=true;
+				}
+			}
+			}
+		}
+                if(!syncflag)
+                {
+		if(!signalQueue.isEmpty())
+			signal=signalQueue.poll();
+		if(signal.length()==0) {
+			execAction(findProc("timer"));
+		}
+		else {
+			setArgs(signal,false);
+		}
+                
+		for(GridElement e:ae) {
+			if(e instanceof NewGridElement) {
+			NewGridElement ne=(NewGridElement)e;
+			String h=ne.getHeader();
+			String t=ne.getSetting("type");
+			if(ne instanceof com.baselet.element.elementnew.uml.State) {
 				if(t!=null && t.equals("receiver")) {
 					if(h!=null && testTrigger(signal,h)) {
 						oa.add(ne);
@@ -1179,15 +1201,8 @@ public class DiagramHandler {
 				if(selectNextRelation("",ne,na,false,""))
 					oa.add(ne);
 			}
-			else if(ne instanceof com.baselet.element.elementnew.uml.SyncBarHorizontal || e instanceof com.baselet.element.elementnew.uml.SyncBarVertical) {
-				int n=ne.getEndStickables().size();
-				String a=ne.getActive();
-				if(a.equals(String.valueOf(n))) {
-					oa.add(ne);
-					selectNextRelation("",ne,na,true,"");
-				}
 			}
-			}
+		}
 		}
 		createChangePanelLines(c);
 //		mylog.append(String.valueOf(ae.size())+" - "+String.valueOf(oa.size())+" + "+String.valueOf(na.size()));
