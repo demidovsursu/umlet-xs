@@ -665,7 +665,7 @@ public class DiagramHandler {
 		if(op.equals("<")) return arg1.length()<arg2.length() || arg1.length()==arg2.length() && arg1.compareTo(arg2)<0;
 		if(op.equals("<=")) return arg1.length()<arg2.length() || arg1.length()==arg2.length() && arg1.compareTo(arg2)<=0;
 		if(op.equals(">")) return arg1.length()>arg2.length() || arg1.length()==arg2.length() && arg1.compareTo(arg2)>0;
-		if(op.equals("<=")) return arg1.length()>arg2.length() || arg1.length()==arg2.length() && arg1.compareTo(arg2)>=0;
+		if(op.equals(">=")) return arg1.length()>arg2.length() || arg1.length()==arg2.length() && arg1.compareTo(arg2)>=0;
 		return false;
 	}
 	private boolean testCond(String cond) {
