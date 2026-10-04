@@ -45,6 +45,7 @@ public class Config {
 	private String defaultFontFamily = Font.SANS_SERIF;
 	private Integer defaultFontsize = 14;
 	private Integer defaultSimStep = 1000;
+	private boolean stop_usignal = false;
 	private Integer propertiesPanelFontsize = 11;
 
 	public Config() {
@@ -209,6 +210,12 @@ public class Config {
 		this.defaultSimStep = defaultSimStep;
 	}
 
+	public boolean isStop_usignal() {
+		return stop_usignal;
+	}
+	public void setStop_usignal(boolean stop) {
+		this.stop_usignal = stop;
+	}
 	public Integer getPropertiesPanelFontsize() {
 		return propertiesPanelFontsize;
 	}
