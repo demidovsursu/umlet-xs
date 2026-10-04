@@ -86,7 +86,6 @@ public class DiagramHandler {
 	private String helptext;
 	private boolean enabled;
 	private int gridSize;
-//	private StringBuilder mylog=new StringBuilder();
 
 //	private OldRelationListener relationListener;
 	private GridElementListener gridElementListener;
@@ -634,24 +633,25 @@ public class DiagramHandler {
 				i=pos+1;
 			}
 			else {
-				if(name.equals(trigger.substring(i,zpt).trim())) return true;
-				i=zpt+1;
+                           String val=trigger.substring(i,zpt).trim();
+                           int pos2=val.indexOf("..");
+                           if(pos2<0) {
+				if(name.equals(val)) return true;
+                           } else {
+				if(name.compareTo(val.substring(0,pos2).trim())>=0 && name.compareTo(val.substring(pos2+2,val.length()).trim())<=0) return true;
+                           }
+			   i=zpt+1;
 			}
 		}
 		return false;
 	}
 	private boolean testCond(String op, String arg1, String arg2) {
-//		mylog.append("("+arg1+op+arg2+") ");
 		if(arg1.length()==0) return false;
 		if(arg1.indexOf('$')>=0) arg1=replaceSubst(arg1);
 		else arg1=getData(arg1);
 		if(arg1==null) return false;
 		if(op.equals("==") || op.equals("=")) { 
 			boolean b=arg1.equals(arg2);
-//			if(b)
-//			mylog.append("=true");
-//			else
-//			mylog.append("=false");
 			return b;
 		}
 		if(op.equals("~=")) {
@@ -675,7 +675,6 @@ public class DiagramHandler {
 			String op=cond.substring(parts[0].length(),cond.length()-parts[1].length());
 			return testCond(op,parts[0].trim(),replaceSubst(parts[1].trim()));
 		}
-//		mylog.append("("+parts[0]+")? ");
 
 		String val=null;
 		if(parts[0].length()>0 && parts[0].charAt(0)=='!') {
@@ -695,7 +694,6 @@ public class DiagramHandler {
 		return true;
 	}
 	private boolean testGuard(String guard) {
-//		mylog.append("test("+guard+") ");
 
 		if(guard.length()==0 || guard.equals("[else]")) return true;
 		if(guard.length()<2 || !(guard.charAt(0)=='[' && guard.charAt(guard.length()-1)==']')) return false;
@@ -806,7 +804,6 @@ public class DiagramHandler {
 		return c.oldValue;
 	}
 	private List<String> findProc(String a) {
-//		mylog.append("find("+a+") ");
 		return procMap.get(a);
 	}
 	private boolean selectNextRelation(String signal, NewGridElement ne, ArrayList<GridElement> na, boolean all, String exitAction) {
@@ -814,7 +811,6 @@ public class DiagramHandler {
 		GridElement elseLink=null;
 		String elseAction=null;
 		int n=0;
-//                mylog.append(" select ");
 		for(Stickable s: ls) {
 			if(s instanceof Relation) {
 			Relation r=(Relation)s;
@@ -835,23 +831,18 @@ public class DiagramHandler {
 				guard=trigger.substring(gpos);
 				trigger=trigger.substring(0,gpos).trim();
 			}
-//			mylog.append(h+"@"+trigger+":"+guard+":"+action+" ");
 			if(testTrigger(signal,trigger)) {
-// 			        mylog.append("test <"+guard+">");
 				if(guard.equals("[else]")) {
 					elseLink=r;
 					elseAction=action;
 				}
 				else if(testGuard(guard)) {
-// 			                mylog.append(" true ");
 					na.add(r);
 					if(n==0) execAction(exitAction);
 					execAction(action);
 					++n;
 					if(!all) break;
 				}
-//                                else
-// 			                mylog.append(" false ");
 			}
 			else if(trigger.length()==0 && guard.equals("[else]") && elseLink==null) {
 				elseLink=r;
@@ -864,7 +855,7 @@ public class DiagramHandler {
 			execAction(exitAction);
 			execAction(elseAction);
 			++n;
-		}
+                }
 		return n>0;
 	}
 	private void initCacheData() {
@@ -918,7 +909,6 @@ public class DiagramHandler {
 	}
 	private String getDataSubstr(String s) {
 		if(s.length()>0 && s.charAt(0)=='#') {
-//			mylog.append("len("+s.substring(1)+") ");
 			String v=getData(s.substring(1));
 			if(v==null) return null;
 			return String.valueOf(v.length());
@@ -926,7 +916,6 @@ public class DiagramHandler {
  		Pattern ptn = Pattern.compile("([<>])(-?\\d+)$");
 		Matcher matcher = ptn.matcher(s);
 		if(matcher.find()) {
-//		mylog.append("sub("+s.substring(0,matcher.start())+","+matcher.group(1)+","+matcher.group(2)+") ");
 			String op=matcher.group(1);
 			int len=Integer.parseInt(matcher.group(2));
 			String v=getDataSubstr(s.substring(0,matcher.start()));
@@ -961,7 +950,6 @@ public class DiagramHandler {
 			}
 		}
 		else {
-//		mylog.append("getData("+s+") ");
 			return getData(s);
 		}
 	}
@@ -1044,7 +1032,6 @@ public class DiagramHandler {
 	}
 	private void execAction(String a) {
 		if(a==null || a.length()==0) return;
-//		mylog.append("action("+a+") ");
 		if(a.startsWith("++") || a.startsWith("--")) {
 			String name=replaceSubst(a.substring(2).trim());
 			String v=getData(name);
@@ -1085,7 +1072,16 @@ public class DiagramHandler {
 		for(String s:a) {
 			if(s.length()>0) {
 				if(s.charAt(0)=='[') {
-					int pos=s.indexOf(']');
+                                        int openp=0;
+					int pos=0;
+                                        for(int i=1; i<s.length(); ++i)
+                                        { if(s.charAt(i)=='\\') ++i;
+                                          else if(s.charAt(i)=='[') ++openp;
+                                          else if(s.charAt(i)==']') {
+                                            if(openp==0) { pos=i; break; }
+                                            --openp;
+                                          }
+                                        }
 					if(pos>0) {
 						String guard=s.substring(0,pos+1);
 						if(guard.equals("[else]")) {
@@ -1119,7 +1115,6 @@ public class DiagramHandler {
 		ArrayList<GridElement> na=new ArrayList<GridElement>();
 		ArrayList<GridElement> oa=new ArrayList<GridElement>();
 		Macro c=new Macro(new ArrayList<Command>());
-//		mylog=new StringBuilder();
                 
 		try {
                 boolean syncflag=false;
@@ -1182,17 +1177,22 @@ public class DiagramHandler {
 				else if(signal.length()>0){
 					if(findInternalAction(ne,signal)) ;
 					else if(selectNextRelation(signal,ne,na,false,findAction(ne,"exit"))) {
-						oa.add(ne);
+					   oa.add(ne);
 					}
-					else
-						execAction(findAction(ne,"do"));
+					else {
+                                           String doa=findAction(ne,"do");
+                                           if(doa!=null) {
+						execAction(doa);
+                                           } else if(Config.getInstance().isStop_usignal()) {
+					        oa.add(ne);
+                                           }
+                                        }
 				}
 				else {
 					execAction(findAction(ne,"do"));
 				}
 			}
 			else if(ne instanceof com.baselet.element.elementnew.uml.SpecialState) {
-//		                mylog.append("type "+t);
 				if(t!=null && t.equals("termination")) {
 					c.getCommands().add(new ChangeElementSetting(ActiveFacet.KEY, null, ae));
 					signal="";
@@ -1205,10 +1205,8 @@ public class DiagramHandler {
 		}
 		}
 		createChangePanelLines(c);
-//		mylog.append(String.valueOf(ae.size())+" - "+String.valueOf(oa.size())+" + "+String.valueOf(na.size()));
 		if(oa.size()>0) c.getCommands().add(new ChangeElementSetting(ActiveFacet.KEY, null, oa));
 		if(na.size()>0) c.getCommands().add(new ChangeElementSetting(ActiveFacet.KEY, '+', na));
-//		Notifier.getInstance().showInfo("Ok: "+mylog.toString());
 		if(c.getCommands().size()==0) return null;
 		}
 		catch(Throwable t) {
