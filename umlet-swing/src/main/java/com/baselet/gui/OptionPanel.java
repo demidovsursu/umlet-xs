@@ -51,6 +51,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	private final JComboBox ui_manager;
 	private final JComboBox default_fontsize = new JComboBox(new Integer[] { 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 });
 	private final JComboBox default_simulation = new JComboBox(new Integer[] { 50,100,200,500,1000,2000,5000 });
+	private final JCheckBox stop_usignal = new JCheckBox();
 	private final JComboBox propertiesPanelFontsize = new JComboBox(new Integer[] { 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 });
 	private final JComboBox default_fontfamily = new JComboBox(Constants.fontFamilyList.toArray(new String[Constants.fontFamilyList.size()]));
 
@@ -84,6 +85,8 @@ public class OptionPanel extends JPanel implements ActionListener {
 		this.add(default_fontfamily);
 		this.add(new JLabel("Default simulation step, ms"));
 		this.add(default_simulation);
+		this.add(new JLabel("Stop on unknown signals"));
+		this.add(stop_usignal);
 		this.add(new JLabel("Developer Mode (show extended Element Info)"));
 		this.add(developerMode);
 		JButton button_ok = new JButton("Ok");
@@ -122,6 +125,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		ui_manager.setSelectedIndex(uis_technicalNames.indexOf(Config.getInstance().getUiManager()));
 		default_fontsize.setSelectedItem(Config.getInstance().getDefaultFontsize());
 		default_simulation.setSelectedItem(Config.getInstance().getDefaultSimStep());
+		stop_usignal.setSelected(Config.getInstance().isStop_usignal());
 		propertiesPanelFontsize.setSelectedItem(Config.getInstance().getPropertiesPanelFontsize());
 		default_fontfamily.setSelectedItem(Config.getInstance().getDefaultFontFamily());
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -151,6 +155,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 			SharedConfig.getInstance().setDev_mode(developerMode.isSelected());
 			Config.getInstance().setDefaultFontsize((Integer) default_fontsize.getSelectedItem());
 			Config.getInstance().setDefaultSimStep((Integer) default_simulation.getSelectedItem());
+			Config.getInstance().setStop_usignal(stop_usignal.isSelected());
 			String newui = uis_technicalNames.get(ui_manager.getSelectedIndex());
 			// only set look and feel if it has changed, because it messes up frame-size
 			if (newui != null && !newui.equals(Config.getInstance().getUiManager())) {
